@@ -140,7 +140,7 @@
             </div>
         </div>
         <input type='hidden' name ='id' value='1234'>
-        <input type='hidden' name ='nombre' value='<?php echo $_POST['price'];?>'>
+        <input type='hidden' name ='nombre' value='<?php echo $_POST['title'];?>'>
         <input type='hidden' name ='descripcion' value='Dispositivo móvil de Tienda e-commerce'>
         <input type='hidden' name ='cantidad' value='1'>
         <input type='hidden' name ='precio' value='<?php echo $_POST['price'];?>'>    
