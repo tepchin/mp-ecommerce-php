@@ -1,37 +1,78 @@
-# mp-ecommerce
+# Mercado Pago SDK for PHP
 
-Este e-commerce de ejemplo será la base para la integración de MercadoPago con `php`.
+[![Build Status](https://travis-ci.org/mercadopago/dx-php.png)](https://travis-ci.org/mercadopago/dx-php)
 
-## Antes de comenzar
+This library provides developers with a simple set of bindings to the Mercado Pago API.
 
-Esta aplicación debe estar accesible mediante un dominio público en internet antes de comenzar con la integración y para ello usaremos [Heroku](https://heroku.com).
+### PHP Versions Supported:
 
-Requisitos para realizar la integración: 
-* Cuenta en GitHub.
-* Cuenta en [Heroku](https://heroku.com).
+The SDK supports PHP 5.6 or major
 
-## Haciendo pública mi e-commerce de ejemplo
+### Installation 
 
-1. Realizar un fork de este proyecto. Considerando que tu usuario de GitHub es `username`, tendremos el repositorio https://github.com/username/mp-ecommerce-php
-2. Ingresar a tu cuenta de Heroku
-3. Crear una aplicación en Heroku para realizar el deploy de nuestro e-commerce. Nombrarla de la siguiente manera *username*-mp-commerce-php. Ejemplo:
-<div style="text-align: center;" >
-<img src="docs/step0.png" width=400 />
-</div>
+#### Using Composer
 
-4. Conectar a nuestra aplicación en Heroku el repositorio "forkeado" en el paso 1
-<div style="text-align: center;" >
-<img src="docs/step1.png" width=800 />
-</div>
+1. Download [Composer](https://getcomposer.org/doc/00-intro.md#installation-linux-unix-macos) if not already installed
+2. Go to your project directory and run `composer require "mercadopago/dx-php:1.2.1"` on the command line.
+3. This how your directory structure would look like.
+4. Thats all, you have Mercado Pago SDK installed.
 
-5. Activar el deploy autómatico ante cualquier cambio en el branch "master". Realizar un deploy manualmente, mediante la opción "Deploy branch" para comprobar que la app esté funcionando correctamente.
+![installation-demo](img/ezgif-2-f98e8701825e.gif)
 
-<div style="text-align: center;" >
-<img src="docs/step2.png" width=800 />
-</div>
+### Quick Start 
 
-6. Nuevamente considerando que tu usuario de GitHub es `username` (substituir en la URL por el correcto), acceder a https://username-mp-ecommerce-php.herokuapp.com/ y validar que la app esté corriendo. Deberás visualizar algo como lo siguiente
+1. You have to require the library from your Composer vendor folder.
 
-<div style="text-align: center;" >
-<img src="docs/step3.png" width=800 />
-</div>
+  ```php
+  require __DIR__  . '/vendor/autoload.php';
+  ```
+
+2. Setup your credentials
+
+  You have two types of credentials:
+
+  * **For API or custom checkout:**
+    ```php
+    MercadoPago\SDK::setAccessToken("YOUR_ACCESS_TOKEN");      // On Production
+    MercadoPago\SDK::setAccessToken("YOUR_TEST_ACCESS_TOKEN"); // On Sandbox
+    ```
+  * **For Web-checkout:**
+    ```php
+    MercadoPago\SDK::setClientId("YOUR_CLIENT_ID");
+    MercadoPago\SDK::setClientSecret("YOUR_CLIENT_SECRET");
+    ```
+
+3. Using resource objects.
+
+  You can interact with all the resources available in the public API, to this each resource is represented by classes according to the following diagram:
+  
+  ![sdk resource structure](https://user-images.githubusercontent.com/864790/34393059-9acad058-eb2e-11e7-9987-494eaf19d109.png)
+  
+  **Sample**
+  
+```php
+  <?php
+  
+    require __DIR__  . '/vendor/autoload.php';
+
+    MercadoPago\SDK::setAccessToken("YOUR_ACCESS_TOKEN");
+
+    $payment = new MercadoPago\Payment();
+
+    $payment->transaction_amount = 141;
+    $payment->token = "YOUR_CARD_TOKEN";
+    $payment->description = "Ergonomic Silk Shirt";
+    $payment->installments = 1;
+    $payment->payment_method_id = "visa";
+    $payment->payer = array(
+      "email" => "larue.nienow@hotmail.com"
+    );
+ 
+    echo $payment->status;
+    
+  ?>
+```
+  
+### Support 
+
+Write us at [developers.mercadopago.com](https://developers.mercadopago.com)
