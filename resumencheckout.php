@@ -4,7 +4,7 @@ ini_set("display_errors", 1);
 // SDK de Mercado Pago
 
 
-require '/vendor/autoload.php';
+require 'vendor/autoload.php';
 
 
 // Agrega credenciales
