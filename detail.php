@@ -44,7 +44,7 @@
 <body class="as-theme-light-heroimage">
 
     <div class="stack">
-        <form method='POST' action='resumencheckout.php' name ='Forma' id ='Forma'>
+        
         <div class="as-search-wrapper" role="main">
             <div class="as-navtuck-wrapper">
                 <div class="as-l-fullwidth  as-navtuck" data-events="event52">
@@ -125,7 +125,6 @@
                                         </div>
                                         <h3 >
                                             <?php echo $_POST['price'] ?>
-                                            
                                         </h3>
                                         <h3 >
                                             <?php echo "$" . $_POST['unit'] ?>
@@ -139,12 +138,6 @@
                 </div>
             </div>
         </div>
-        <input type='hidden' name ='id' value='1234'>
-        <input type='hidden' name ='nombre' value='<?php echo $_POST['title'];?>'>
-        <input type='hidden' name ='descripcion' value='Dispositivo móvil de Tienda e-commerce'>
-        <input type='hidden' name ='cantidad' value='1'>
-        <input type='hidden' name ='precio' value='<?php echo $_POST['price'];?>'>    
-        </form>
         <div role="alert" class="as-loader-text ally" aria-live="assertive"></div>
         <div class="as-footnotes">
             <div class="as-footnotes-content">
